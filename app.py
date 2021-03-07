@@ -43,10 +43,14 @@ def handle_message(event):
     msg = event.message.text # 使用者傳過來的訊息
     r = '很抱歉，您說什麼'
 
-    if msg == 'hi':
-        r = 'hi'
+    if msg in ['hi', 'Hi']: # 如果"傳過來的訊息"有在這個清單裡面都可
+        r = '嗨'
     elif msg == '你吃飯了嗎':
         r = '還沒'
+    elif msg == '你是誰':
+        r = '我是機器人'
+    elif '訂位' in msg: # 如果"訂位"有在"傳過來的訊息"的話  的意思
+        r = '您想訂位，是嗎?'
 
     line_bot_api.reply_message(
         event.reply_token,
