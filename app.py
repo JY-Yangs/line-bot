@@ -68,6 +68,8 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=r))
 
+# 這個機器人回復都是靠"rule-based"去寫的，可能寫100條、500條if條件來儘量捕捉各種情況
+# 真正的AI的領域是NLP(natural language processing ; 自然語言處理)，是AI領域裡面的其中一個subfield(副領域)
 
 if __name__ == "__main__":
     app.run()
