@@ -10,7 +10,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, StickerSendMessage
 )
 
 app = Flask(__name__)
@@ -42,6 +42,18 @@ def callback():
 def handle_message(event):
     msg = event.message.text # 使用者傳過來的訊息
     r = '很抱歉，您說什麼'
+
+    if '給我貼圖' in msg:
+        sticker_message = StickerSendMessage(
+            package_id='1',
+            sticker_id='1'
+        )
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            sticker_message)
+
+        return # 這邊遇到return會function會結束掉，而且這邊沒有要它return回傳什麼東西，就跳出這個function就好，所以只單純寫return
 
     if msg in ['hi', 'Hi']: # 如果"傳過來的訊息"有在這個清單裡面都可
         r = '嗨'
